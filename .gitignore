@@ -20,3 +20,4 @@ data/VOC/*.zip
 *.ckpt
 .env
 .DS_Store
+data/
