@@ -1,0 +1,16 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install torch==2.3.0+cpu torchvision==0.18.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+      - run: pip install -e .
+      - run: pip install pytest pytest-cov ruff black
+      - run: ruff check .
+      - run: black --check .
+      - run: pytest tests/ --cov=yolov1 --cov-fail-under=100 -v
