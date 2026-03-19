@@ -2,6 +2,38 @@
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "yolov1-pytorch"
+version = "1.0.0"
+description = "YOLOv1 object detection implemented from scratch in PyTorch"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.3.0",
+    "torchvision>=0.18.0",
+    "pytorch-lightning>=2.2.4",
+    "opencv-python-headless",
+    "numpy",
+    "fastapi",
+    "uvicorn",
+    "typer",
+    "prometheus-client",
+    "pydantic>=2.0",
+    "optuna",
+    "pdoc3",
+    "wandb",
+]
+
+[project.scripts]
+yolov1-train = "scripts.train:app"
+yolov1-detect = "scripts.detect:app"
+yolov1-benchmark = "scripts.benchmark:app"
+yolov1-error-analysis = "scripts.error_analysis:app"
+yolov1-iou-sensitivity = "scripts.iou_sensitivity:app"
+yolov1-hparam-search = "scripts.hparam_search:run_search"
+yolov1-ablation = "scripts.ablation:main"
+yolov1-docs = "scripts.generate_docs:generate"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--cov=yolov1 --cov-fail-under=100"

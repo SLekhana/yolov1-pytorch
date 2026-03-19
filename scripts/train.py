@@ -1,7 +1,7 @@
 import typer
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
-from pytorch_lightning.loggers import CSVLogger
+from pytorch_lightning.loggers import CSVLogger, WandbLogger
 from yolov1.engine.trainer import YOLOv1Module
 
 app = typer.Typer()
@@ -16,8 +16,18 @@ def train(
     num_workers: int = 4,
     precision: str = "16-mixed",
     ckpt_dir: str = "checkpoints",
+    compile_model: bool = False,
+    wandb: bool = False,
+    wandb_project: str = "yolov1-pytorch",
 ):
-    model = YOLOv1Module(data_root=data_root, batch_size=batch_size, lr=lr, num_workers=num_workers)
+    model = YOLOv1Module(
+        data_root=data_root,
+        batch_size=batch_size,
+        lr=lr,
+        num_workers=num_workers,
+        compile_model=compile_model,
+    )
+    logger = WandbLogger(project=wandb_project) if wandb else CSVLogger("logs")
     trainer = pl.Trainer(
         max_epochs=epochs,
         precision=precision,
@@ -25,7 +35,7 @@ def train(
             ModelCheckpoint(dirpath=ckpt_dir, monitor="val_loss", save_top_k=3),
             LearningRateMonitor(),
         ],
-        logger=CSVLogger("logs"),
+        logger=logger,
         log_every_n_steps=10,
     )
     trainer.fit(model)
