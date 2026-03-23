@@ -5,11 +5,13 @@ import yolov1.eval.nms_cuda as nms_mod
 
 
 def make_boxes():
-    return torch.tensor([
-        [0.1, 0.1, 0.5, 0.5],
-        [0.1, 0.1, 0.5, 0.5],
-        [0.8, 0.8, 0.9, 0.9],
-    ])
+    return torch.tensor(
+        [
+            [0.1, 0.1, 0.5, 0.5],
+            [0.1, 0.1, 0.5, 0.5],
+            [0.8, 0.8, 0.9, 0.9],
+        ]
+    )
 
 
 def make_scores():

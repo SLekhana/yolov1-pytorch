@@ -42,12 +42,14 @@ def test_nms_output():
 
 def test_box_iou_xyxy_perfect():
     from yolov1.eval.iou import box_iou_xyxy
+
     box = torch.tensor([[0.1, 0.1, 0.5, 0.5]])
     assert abs(box_iou_xyxy(box, box).item() - 1.0) < 1e-4
 
 
 def test_box_iou_xyxy_no_overlap():
     from yolov1.eval.iou import box_iou_xyxy
+
     a = torch.tensor([[0.0, 0.0, 0.2, 0.2]])
     b = torch.tensor([[0.8, 0.8, 1.0, 1.0]])
     assert box_iou_xyxy(a, b).item() < 1e-4
@@ -55,6 +57,7 @@ def test_box_iou_xyxy_no_overlap():
 
 def test_box_iou_xyxy_partial():
     from yolov1.eval.iou import box_iou_xyxy
+
     a = torch.tensor([[0.0, 0.0, 0.5, 0.5]])
     b = torch.tensor([[0.25, 0.25, 0.75, 0.75]])
     iou = box_iou_xyxy(a, b).item()

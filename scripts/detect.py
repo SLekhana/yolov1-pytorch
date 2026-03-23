@@ -29,9 +29,16 @@ def detect(
     h, w = img.shape[:2]
     for det in dets:
         x1, y1, x2, y2, conf, cls = det
-        cv2.rectangle(img, (int(x1*w), int(y1*h)), (int(x2*w), int(y2*h)), (0, 255, 0), 2)
-        cv2.putText(img, f"{VOC_CLASSES[int(cls)]} {conf:.2f}", (int(x1*w), int(y1*h)-5),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+        cv2.rectangle(img, (int(x1 * w), int(y1 * h)), (int(x2 * w), int(y2 * h)), (0, 255, 0), 2)
+        cv2.putText(
+            img,
+            f"{VOC_CLASSES[int(cls)]} {conf:.2f}",
+            (int(x1 * w), int(y1 * h) - 5),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.5,
+            (0, 255, 0),
+            1,
+        )
     cv2.imwrite(output, img)
     typer.echo(f"Saved to {output} — {len(dets)} detections")
 

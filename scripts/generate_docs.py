@@ -4,13 +4,19 @@ import sys
 
 
 def generate() -> None:
-    subprocess.run([
-        sys.executable, "-m", "pdoc",
-        "--html",
-        "--output-dir", "docs",
-        "--force",
-        "yolov1",
-    ], check=True)
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "pdoc",
+            "--html",
+            "--output-dir",
+            "docs",
+            "--force",
+            "yolov1",
+        ],
+        check=True,
+    )
     print("Docs generated in docs/")
 
 

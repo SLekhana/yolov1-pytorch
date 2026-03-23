@@ -54,7 +54,7 @@ def analyze(
                     bw = target[i, j, 23].item()
                     bh = target[i, j, 24].item()
                     cls = int(target[i, j, :20].argmax().item())
-                    gt_boxes.append([cx - bw/2, cy - bh/2, cx + bw/2, cy + bh/2])
+                    gt_boxes.append([cx - bw / 2, cy - bh / 2, cx + bw / 2, cy + bh / 2])
                     gt_labels.append(cls)
 
         matched_gt: set[int] = set()
@@ -90,7 +90,9 @@ def analyze(
         recall = tp / (tp + fn + 1e-6)
         avg_loc = float(sum(per_class_loc_errors[c]) / len(per_class_loc_errors[c])) if per_class_loc_errors[c] else 0.0
         results[VOC_CLASSES[c]] = {
-            "tp": tp, "fp": fp, "fn": fn,
+            "tp": tp,
+            "fp": fp,
+            "fn": fn,
             "precision": round(precision, 4),
             "recall": round(recall, 4),
             "avg_loc_error": round(avg_loc, 4),
@@ -102,7 +104,9 @@ def analyze(
     typer.echo(f"\n{'Class':<20} {'Precision':>10} {'Recall':>10} {'AvgLocErr':>12}")
     typer.echo("-" * 55)
     for cls_name, stats in results.items():
-        typer.echo(f"{cls_name:<20} {stats['precision']:>10.4f} {stats['recall']:>10.4f} {stats['avg_loc_error']:>12.4f}")
+        typer.echo(
+            f"{cls_name:<20} {stats['precision']:>10.4f} {stats['recall']:>10.4f} {stats['avg_loc_error']:>12.4f}"
+        )
 
 
 if __name__ == "__main__":

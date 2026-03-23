@@ -50,7 +50,7 @@ def sensitivity(
                     bw = target[i, j, 23].item()
                     bh = target[i, j, 24].item()
                     cls = int(target[i, j, :20].argmax().item())
-                    gt_boxes.append([cx - bw/2, cy - bh/2, cx + bw/2, cy + bh/2])
+                    gt_boxes.append([cx - bw / 2, cy - bh / 2, cx + bw / 2, cy + bh / 2])
                     gt_labels.append(cls)
         all_targets.append({"boxes": gt_boxes, "labels": gt_labels})
 

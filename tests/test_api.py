@@ -46,6 +46,7 @@ def test_detect_returns_list(client):
 def test_load_model_sets_global(tmp_path):
     from yolov1.model.yolov1 import YOLOv1
     import yolov1.serve.api as api_module
+
     model = YOLOv1()
     ckpt = tmp_path / "model.pt"
     torch.save(model.state_dict(), str(ckpt))

@@ -41,11 +41,16 @@ def run_search(n_trials: int = 20, output: str = "logs/hparam_results.json") -> 
     study.optimize(objective, n_trials=n_trials)
 
     Path(output).parent.mkdir(exist_ok=True)
-    Path(output).write_text(json.dumps({
-        "best_params": study.best_params,
-        "best_value": study.best_value,
-        "trials": [{"params": t.params, "value": t.value} for t in study.trials],
-    }, indent=2))
+    Path(output).write_text(
+        json.dumps(
+            {
+                "best_params": study.best_params,
+                "best_value": study.best_value,
+                "trials": [{"params": t.params, "value": t.value} for t in study.trials],
+            },
+            indent=2,
+        )
+    )
 
     print(f"\nBest params: {study.best_params}")
     print(f"Best val_loss: {study.best_value:.4f}")

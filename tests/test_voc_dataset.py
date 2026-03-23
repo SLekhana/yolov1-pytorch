@@ -47,12 +47,11 @@ def fake_voc_root(tmp_path):
     (voc_dir / "ImageSets" / "Main" / "trainval.txt").write_text("\n".join(ids))
 
     import cv2
+
     for img_id in ids:
         img = np.random.randint(0, 255, (448, 448, 3), dtype=np.uint8)
         cv2.imwrite(str(voc_dir / "JPEGImages" / f"{img_id}.jpg"), img)
-        (voc_dir / "Annotations" / f"{img_id}.xml").write_bytes(
-            make_fake_annotation(img_id)
-        )
+        (voc_dir / "Annotations" / f"{img_id}.xml").write_bytes(make_fake_annotation(img_id))
 
     return str(tmp_path)
 
@@ -67,11 +66,10 @@ def fake_voc_difficult(tmp_path):
     (voc_dir / "ImageSets" / "Main" / "trainval.txt").write_text("000001")
 
     import cv2
+
     img = np.random.randint(0, 255, (448, 448, 3), dtype=np.uint8)
     cv2.imwrite(str(voc_dir / "JPEGImages" / "000001.jpg"), img)
-    (voc_dir / "Annotations" / "000001.xml").write_bytes(
-        make_fake_difficult_annotation()
-    )
+    (voc_dir / "Annotations" / "000001.xml").write_bytes(make_fake_difficult_annotation())
 
     return str(tmp_path)
 
@@ -109,6 +107,7 @@ def test_dataset_difficult_skipped(fake_voc_difficult):
 
 def test_dataset_with_transform(fake_voc_root):
     from yolov1.data.augmentations import TrainTransform
+
     ds = VOCDataset(fake_voc_root, year="2007", split="trainval", transform=TrainTransform())
     img, target = ds[0]
     assert img.shape == (3, 448, 448)

@@ -36,6 +36,7 @@ def test_engine_import():
 
 def test_training_step():
     import torch
+
     module = YOLOv1Module()
     imgs = torch.randn(2, 3, 448, 448)
     targets = torch.zeros(2, 7, 7, 30)
@@ -46,6 +47,7 @@ def test_training_step():
 
 def test_validation_step():
     import torch
+
     module = YOLOv1Module()
     imgs = torch.randn(2, 3, 448, 448)
     targets = torch.zeros(2, 7, 7, 30)
