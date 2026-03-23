@@ -1,10 +1,9 @@
-import io
 import numpy as np
 import cv2
 import torch
 import pytest
 from fastapi.testclient import TestClient
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 from yolov1.serve.api import app, load_model
 import yolov1.serve.api as api_module
 

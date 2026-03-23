@@ -1,5 +1,4 @@
 import torch
-import pytest
 from yolov1.model.yolov1 import YOLOv1
 from yolov1.model.loss import YOLOv1Loss
 from yolov1.eval.nms import decode_predictions

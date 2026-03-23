@@ -1,4 +1,3 @@
-import pytest
 import torch
 from yolov1.engine.trainer import YOLOv1Module
 from yolov1.engine import YOLOv1Module as ImportedModule

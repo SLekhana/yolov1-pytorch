@@ -1,5 +1,4 @@
 import torch
-import pytest
 from unittest.mock import patch, MagicMock
 from yolov1.eval.nms_cuda import _nms_cpu, nms_dispatch
 import yolov1.eval.nms_cuda as nms_mod

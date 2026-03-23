@@ -1,5 +1,4 @@
 import numpy as np
-import pytest
 from yolov1.data.augmentations import hsv_jitter, random_crop, mosaic, TrainTransform
 
 

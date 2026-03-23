@@ -1,6 +1,5 @@
 import numpy as np
 import pytest
-import torch
 import xml.etree.ElementTree as ET
 import cv2
 from yolov1.engine.trainer import YOLOv1Module
