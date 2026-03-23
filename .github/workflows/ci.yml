@@ -12,5 +12,5 @@ jobs:
       - run: pip install -e .
       - run: pip install pytest pytest-cov ruff black
       - run: ruff check .
-      - run: black --check .
+      - run: black --check . --target-version py311
       - run: pytest tests/ --cov=yolov1 --cov-fail-under=100 -v
