@@ -1,1 +1,1 @@
-from .map import compute_map
+from .map import compute_map as compute_map

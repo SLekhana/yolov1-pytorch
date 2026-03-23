@@ -1,9 +1,6 @@
 import numpy as np
 import pytest
-import torch
 import xml.etree.ElementTree as ET
-from pathlib import Path
-from unittest.mock import patch, MagicMock
 from yolov1.data.voc_dataset import VOCDataset, VOC_CLASSES, CLASS_TO_IDX
 
 
